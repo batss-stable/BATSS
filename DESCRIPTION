@@ -8,7 +8,7 @@ Authors@R: c(
   person("Thomas", "Jaki", role = "aut", comment = c(ORCID = "0000-0002-1096-188X")),
   person("Stephane", "Heritier", role = "aut", comment = c(ORCID = "0000-0002-3640-079X")))
 Description: Defines operating characteristics of Bayesian Adaptive Trials considering a generalised linear model response via Monte Carlo simulations of Bayesian GLM fitted via integrated Laplace approximations (INLA). 
-URL: https://batss-dev.github.io/BATSS/
+URL: https://batss-stable.github.io/BATSS/
 License: GPL-2
 Encoding: UTF-8
 Suggests:

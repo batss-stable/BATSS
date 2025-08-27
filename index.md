@@ -21,11 +21,13 @@ install.packages("BATSS")
 ```
 
 
-To install the development version of the BATSS package from GitHub, run
+To install the latest stable version of the BATSS package from GitHub, run
 
 ```r
 install.packages("devtools")
 devtools::install_github("batss-dev/BATSS")
 ```
+
+Note that a developement interger is added to the package version sequence when BATSS is intalled via GitHub, so that the package version breaks down into <major>.<minor>.<patch>.<dev>. 
 
 
