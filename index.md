@@ -28,6 +28,6 @@ install.packages("devtools")
 devtools::install_github("batss-stable/BATSS")
 ```
 
-Note that a developement interger is added to the package version sequence when BATSS is intalled via GitHub, so that the package version breaks down into <major>.<minor>.<patch>.<dev>. 
+Note that a developement interger is added to the package version sequence when BATSS is intalled via GitHub, so that the package version breaks down into `major`.`minor`.`patch`.`dev`. 
 
 
