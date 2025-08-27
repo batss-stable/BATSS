@@ -1,11 +1,16 @@
-## Version 0.7.12
+## Version 1.0.1
 
--   Initial release of BATSS with pkgdown
+-   New website address (https://batss-stable.github.io/BATSS/)
 
-## Version 0.7.13
+## Version 1.0.0
 
--   Minor improvements to function `plot.batss`
--   Minor changes to the vignette dedicated to a binomial endpoint
+-   Checks
+-   Improvements to internal/generic functions
+
+## Version 0.7.15
+
+-   Resolution of a bug affecting designs with a 
+    single target parameter
 
 ## Version 0.7.14
 
@@ -13,13 +18,11 @@
     related to cases in which efficacy and futility criteria 
     are simulatneously met for an arm
 -   Minor improvements (help pages, printed messages)
+## Version 0.7.13
 
-## Version 0.7.15
+-   Minor improvements to function `plot.batss`
+-   Minor changes to the vignette dedicated to a binomial endpoint
 
--   Resolution of a bug affecting designs with a single target parameter
+## Version 0.7.12
 
-## Version 1.0.0
-
--   Checks
--   Minor improvments to internal/generic functions
-
+-   Initial release of BATSS with pkgdown
