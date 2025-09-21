@@ -1,4 +1,13 @@
-# BATSS (development version)
+## Version 1.1.0
+
+-   Improvements to `summary.batss`, that now 
+    -   works with additional predictors to the treatment effect 
+    -   allows to save outputs (as objects of class `summary.batss`
+        with corresponding `print` function)
+-   Improvements to `plot.batss`, that now includes
+    -   a violin plot of sample sizes per group,
+    -   a barplot of the probability of stopping the trial at each look
+-   Update of website: new 'ANCOVA' and 'Parallelisation' pages 
 
 ## Version 1.0.1
 
@@ -6,7 +15,7 @@
 
 ## Version 1.0.0
 
--   Checks
+-   Improvements to checks
 -   Improvements to internal/generic functions
 
 ## Version 0.7.15
@@ -20,6 +29,7 @@
     related to cases in which efficacy and futility criteria 
     are simulatneously met for an arm
 -   Minor improvements (help pages, printed messages)
+
 ## Version 0.7.13
 
 -   Minor improvements to function `plot.batss`
