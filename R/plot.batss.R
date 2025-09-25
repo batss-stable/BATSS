@@ -306,7 +306,9 @@ plot.batss = function(x, which=1:4, ask=TRUE, hypothesis="H1",
                  col=dataw$col,ylim=ylimw,xlim=xlimw,
                  main=id.targetw$id[tw],xlab="Sample size",
                  ylab = "Estimates",pch=dataw$pch,cex=cex)
-            abline(h= id.targetw$beta[tw],col=col[5],lty=1)  
+            abline(h= id.targetw$beta[tw],col="blue",lty=1, lwd=1.5)  
+            #text(xlimw[2]-(xlimw[2]-xlimw[1]*.05),id.targetw$beta[tw],
+            #     "True", col="blue")
             if(ess){   
                 abline(v= mean(ar.inf.rt4[,tw,"n"]),col=ess.col,lty=3)
                 axis(3,mean(ar.inf.rt4[,tw,"n"]),tick=FALSE,
