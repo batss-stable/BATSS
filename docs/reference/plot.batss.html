@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BATSS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,6 +58,7 @@
 <span>  legend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ess <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  percentage <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  beta <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#008B0040"</span>, <span class="st">"#8B3A3A40"</span>, <span class="st">"#8B897040"</span>, <span class="st">"#FF990075"</span><span class="op">)</span>,</span>
 <span>  smooth <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -98,6 +99,10 @@
 
 <dt id="arg-percentage">percentage<a class="anchor" aria-label="anchor" href="#arg-percentage"></a></dt>
 <dd><p>A <a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default set to <code>TRUE</code>) indicating if the probability of stopping at each look should be displayed in plots 2 (as a percentage), or a list with names <code>col</code>, and <code>cex</code> indicating i/ the colour of the label as a character, ii/ the text expension level as a numerical value. The input <code>percentage = TRUE</code> is equivalent to <code>percentage = list(col="violet", cex=1)</code>.</p></dd>
+
+
+<dt id="arg-beta">beta<a class="anchor" aria-label="anchor" href="#arg-beta"></a></dt>
+<dd><p>A <a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default set to <code>TRUE</code>) indicating if the assumed target parameter value(s) should be displayed in plot 4, or a list with names <code>col</code>, <code>lwd</code>, and <code>lty</code> respectively indicating i/ the colour of the target parameter value horizontal line(s) as a character, ii/ the thickness of the line(s) as a numerical value  and iii/ the type of line as an integer (see <a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a> for details). The input <code>beta = TRUE</code> is equivalent to <code>beta = list(col="blue", lwd=1.5, lty=1)</code>.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
