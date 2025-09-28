@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BATSS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9007</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,14 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Object of class 'summary.batss'.</p>
-    </div>
+<p>The function summary.batss returns an S3 list of class 'summary.batss' with available print functions. The list elements are</p><ul><li><p>beta - A data frame providing information related to the beta parameter vector, such as parameter names and values, for example.</p></li>
+<li><p>look - A data frame providing information related to looks, like sample size of a given interim (m) and cumulative sample size at a given interim (n), for example.</p></li>
+<li><p>par - A list providing different information, like the used seeds (seed) and the groups (group), for example.</p></li>
+<li><p>H1 - A list providing trial aggregated results under the alternative, like the probability of efficacy, futility, or both, per arm or globally (<code>object$H1$target</code>), the probability of stopping early for efficacy (<code>object$H1$efficacy</code>) and futility (<code>object$H1$futility</code>), the sample size expectation, standard deviation, and quantiles 0.1, 0.5 and 0.9, per group and overall (<code>object$H1$summary.sample.sizes</code>), the probabilities associated to each combination of efficacy and futility per group (scenario).</p></li>
+<li><p>H0 - A list providing trial aggregated results under the global null hypothesis (same structure as H1).</p></li>
+<li><p>call - The matched call.</p></li>
+<li><p>type - The type of 'BATSS' analysis (only 'glm' is currently available).</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="batss.glm.html">batss.glm()</a></code>, the function generating S3 objects of class 'batss'.</p></div>

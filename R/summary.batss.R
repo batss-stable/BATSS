@@ -5,6 +5,16 @@
 #' @param extended A logical indicating if a standard (extended = FALSE, default) or extended output (extended = TRUE) should be returned. Default to `NULL` in which case the input of the argument `extended` chosen when generating `object` with [batss.glm()] is used.
 #' @param ... Additional arguments affecting the summary produced.
 #' @returns Object of class 'summary.batss'.
+#' @returns The function [summary.batss] returns an S3 list of class 'summary.batss' with available print functions. The list elements are
+#' \itemize{
+#'   \item beta - A data frame providing information related to the beta parameter vector, such as parameter names and values, for example.
+#'   \item look - A data frame providing information related to looks, like sample size of a given interim (m) and cumulative sample size at a given interim (n), for example.
+#'   \item par - A list providing different information, like the used seeds (seed) and the groups (group), for example.
+#'   \item H1 - A list providing trial aggregated results under the alternative, like the probability of efficacy, futility, or both, per arm or globally (`object$H1$target`), the probability of stopping early for efficacy (`object$H1$efficacy`) and futility (`object$H1$futility`), the sample size expectation, standard deviation, and quantiles 0.1, 0.5 and 0.9, per group and overall (`object$H1$summary.sample.sizes`), the probabilities associated to each combination of efficacy and futility per group (scenario).
+#'   \item H0 - A list providing trial aggregated results under the global null hypothesis (same structure as H1).
+#'   \item call - The matched call.
+#'   \item type - The type of 'BATSS' analysis (only 'glm' is currently available).
+#' }
 #' @seealso [batss.glm()], the function generating S3 objects of class 'batss'. 
 #' @export
 summary.batss = function(object, extended=NULL, ...){

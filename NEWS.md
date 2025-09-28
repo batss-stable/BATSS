@@ -1,3 +1,9 @@
+## Version >1.1.0
+
+-    `summary.batss` is now handling trials where both efficacy and 
+     futility conditions are simultaneously met 
+-    `plot.batss` is now accepting a new argument, `beta`
+
 ## Version 1.1.0
 
 -   Improvements to `summary.batss`, that now 
@@ -5,7 +11,7 @@
     -   allows to save outputs (as objects of class `summary.batss`
         with corresponding `print` function)
 -   Improvements to `plot.batss`, that now includes
-    -   a violin plot of sample sizes per group,
+    -   a violin plot of sample sizes per group
     -   a barplot of the probability of stopping the trial at each look
 -   Update of website: new 'ANCOVA' and 'Parallelisation' pages 
 
