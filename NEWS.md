@@ -1,8 +1,11 @@
-## Version >1.1.0
+## Version 1.1.1
 
--    `summary.batss` is now handling trials where both efficacy and 
-     futility conditions are simultaneously met 
--    `plot.batss` is now accepting a new argument, `beta`
+-    Minor changes to `summary.batss`, that now 
+     -   handles trials where both efficacy and futility 
+         conditions are simultaneously met 
+     -   prints the sample size per look
+-    Minor change to `plot.batss`, that now accepts
+     a new argument, `beta`
 
 ## Version 1.1.0
 

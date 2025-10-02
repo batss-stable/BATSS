@@ -155,6 +155,12 @@ print.summary.batss = function(x, ...){
   objectw = object$beta
   colnames(objectw)[1] = ""
   print(objectw,row.names=FALSE)
+  cat("\n")
+  cli_h3("Sample size per interim analyis:\n")
+  objectw = object$sample
+  colnames(objectw)[1] = ""
+  print(objectw,row.names=FALSE)
+
   # H0
   if(object$par$H0){
     cat("\n\n")
