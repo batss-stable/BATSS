@@ -1,0 +1,59 @@
+# Changelog
+
+## Version 1.1.1
+
+CRAN release: 2025-10-02
+
+- Minor changes to `summary.batss`, that now
+  - handles trials where both efficacy and futility conditions are
+    simultaneously met
+  - prints the sample size per look
+- Minor change to `plot.batss`, that now accepts a new argument, `beta`
+
+## Version 1.1.0
+
+CRAN release: 2025-09-21
+
+- Improvements to `summary.batss`, that now
+  - works with additional predictors to the treatment effect
+  - allows to save outputs (as objects of class `summary.batss` with
+    corresponding `print` function)
+- Improvements to `plot.batss`, that now includes
+  - a violin plot of sample sizes per group
+  - a barplot of the probability of stopping the trial at each look
+- Update of website: new ‘ANCOVA’ and ‘Parallelisation’ pages
+
+## Version 1.0.1
+
+CRAN release: 2025-08-27
+
+- New website address (<https://batss-stable.github.io/BATSS/>)
+
+## Version 1.0.0
+
+CRAN release: 2024-10-02
+
+- Improvements to checks
+- Improvements to internal/generic functions
+
+## Version 0.7.15
+
+- Resolution of a bug affecting designs with a single target parameter
+
+## Version 0.7.14
+
+CRAN release: 2024-07-14
+
+- Improvements to functions `plot.batss` and `summary.batss` related to
+  cases in which efficacy and futility criteria are simulatneously met
+  for an arm
+- Minor improvements (help pages, printed messages)
+
+## Version 0.7.13
+
+- Minor improvements to function `plot.batss`
+- Minor changes to the vignette dedicated to a binomial endpoint
+
+## Version 0.7.12
+
+- Initial release of BATSS with pkgdown
