@@ -3,12 +3,11 @@
 -   Improvements to `batss.glm`:
     -   `interim = NA` now specifies a fixed (non-adaptive) design
         with a single look at the maximum sample size `N`
-    -   a warning is issued when `RAR` is non-`NULL` and `interim = NA`,
-        as response-adaptive randomisation has no effect in a fixed design
--   Bug fixes to `batss.glm`, `batss.combine`, `summary.batss`,
-    `plot.batss` and internal functions, including a fix to
-    `eff.trial.control` and `fut.trial.control` being ignored
-    in trial-level stopping decisions 
+    -   better warnings
+-   Fixes to minor bugs detected by Claude (Opus 4.6) in version 1.1.1 of
+    `batss.glm`, `batss.combine`, `summary.batss`, `plot.batss` and 
+    internal functions, including a fix to `eff.trial.control` and 
+    `fut.trial.control` being ignored in trial-level stopping decisions 
 
 ## Version 1.1.1
 
