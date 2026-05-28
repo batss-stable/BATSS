@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">BATSS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -559,27 +559,20 @@ save time.</p>
 characteristics of the fixed design when considering the same efficacy
 and futility parameters as well as the same total maximum sample size of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>216</mn></mrow><annotation encoding="application/x-tex">N=216</annotation></semantics></math>
-patients. The easiest way to fit a fixed design with
-<strong>BATSS</strong> is to plan a single interim analysis defined so
-that no adaptations are allowed. This is ensured by setting the
-<code>delta.eff</code> and <code>delta.fut</code> values to
-<code>NA</code> for the interim (as well as by setting the
-<code>RAR</code> argument to <code>NULL</code> as treatment allocation
-after the interim analysis would be based on posterior probabilities
-estimated on interim data otherwise). Note that the sample size at the
-dummy interim should be a multiple of the number of arms in the
-trial.</p>
+patients. The simplest way to specify a fixed design with
+<strong>BATSS</strong> is to set <code>interim = NA</code>, which
+instructs the function to perform a single look at the maximum sample
+size <code>N</code>. The <code>RAR</code> argument is set to
+<code>NULL</code> as response-adaptive randomisation is not applicable
+in a fixed design.</p>
 <div class="section level4">
-<h4 id="scenario-1-1">Scenario 1<a class="anchor" aria-label="anchor" href="#scenario-1-1"></a>
+<h4 id="scenario-1-fixed">Scenario 1 (fixed)<a class="anchor" aria-label="anchor" href="#scenario-1-fixed"></a>
 </h4>
-<p>Same as the adaptive Scenario 1 above, except <code>interim</code> is
-reduced to a single dummy interim at 60 participants, and
-<code>delta.eff</code> and <code>delta.fut</code> are set to
-<code>c(NA, 0)</code> and <code>c(NA, log(1.5))</code> respectively, and
-<code>RAR</code> is set to <code>NULL</code> (and
-<code>RAR.control</code> and <code>delta.RAR</code> deleted), so that no
-decisions are made at the interim and equal group allocation is
-used.</p>
+<p>Same as the adaptive Scenario 1 above, except
+<code>interim = NA</code> (fixed design, single look at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>216</mn></mrow><annotation encoding="application/x-tex">N=216</annotation></semantics></math>),
+<code>delta.eff</code> and <code>delta.fut</code> are set to scalar
+values <code>0</code> and <code>log(1.5)</code> respectively.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># number of trials</span></span>
 <span><span class="va">R</span> <span class="op">=</span> <span class="fl">25</span></span>
@@ -588,25 +581,24 @@ used.</p>
 <span><span class="va">logit</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">p</span><span class="op">/</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># simulation</span></span>
-<span><span class="va">scenario1_fixed</span> <span class="op">=</span> <span class="fu"><a href="../../reference/batss.glm.html">batss.glm</a></span><span class="op">(</span>   </span>
+<span><span class="va">scenario1_fixed</span> <span class="op">=</span> <span class="fu"><a href="../../reference/batss.glm.html">batss.glm</a></span><span class="op">(</span></span>
 <span>  model           <span class="op">=</span> <span class="va">y</span><span class="op">~</span><span class="va">group</span>,</span>
 <span>  var             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">rbinom</span>,</span>
 <span>                         group <span class="op">=</span> <span class="va">treatalloc.fun</span><span class="op">)</span>,</span>
-<span>  var.control     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>  var.control     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  family          <span class="op">=</span> <span class="st">"binomial"</span>,</span>
 <span>  link            <span class="op">=</span> <span class="st">"logit"</span>,</span>
 <span>  beta            <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  which           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,</span>
 <span>  R               <span class="op">=</span> <span class="va">R</span>,</span>
 <span>  alternative     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"greater"</span><span class="op">)</span>,</span>
-<span>  RAR             <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  prob0           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">1</span>,B<span class="op">=</span><span class="fl">1</span>,C<span class="op">=</span><span class="fl">1</span>,D<span class="op">=</span><span class="fl">1</span>,E<span class="op">=</span><span class="fl">1</span>,F<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,</span>
-<span>  N               <span class="op">=</span> <span class="fl">216</span>, </span>
-<span>  interim         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>recruited<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  N               <span class="op">=</span> <span class="fl">216</span>,</span>
+<span>  interim         <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  eff.arm         <span class="op">=</span> <span class="va">efficacy.arm.fun</span>,</span>
-<span>  delta.eff       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">0</span><span class="op">)</span>, </span>
+<span>  delta.eff       <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  eff.arm.control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b.eff <span class="op">=</span> <span class="fl">0.045</span><span class="op">)</span>,</span>
-<span>  delta.fut       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>  delta.fut       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span>,</span>
 <span>  fut.arm         <span class="op">=</span> <span class="va">futility.arm.fun</span>,</span>
 <span>  fut.arm.control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b.fut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,</span>
 <span>  computation     <span class="op">=</span> <span class="st">"parallel"</span>,</span>
@@ -615,16 +607,13 @@ used.</p>
 <span>  extended        <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>   </span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="scenario-2-1">Scenario 2<a class="anchor" aria-label="anchor" href="#scenario-2-1"></a>
+<h4 id="scenario-2-fixed">Scenario 2 (fixed)<a class="anchor" aria-label="anchor" href="#scenario-2-fixed"></a>
 </h4>
-<p>Same as the adaptive Scenario 2 above, except <code>interim</code> is
-reduced to a single dummy interim at 60 participants, and
-<code>delta.eff</code> and <code>delta.fut</code> are set to
-<code>c(NA, 0)</code> and <code>c(NA, log(1.5))</code> respectively, and
-<code>RAR</code> is set to <code>NULL</code> (and
-<code>RAR.control</code> and <code>delta.RAR</code> deleted), so that no
-decisions are made at the interim and equal group allocation is
-used.</p>
+<p>Same as the adaptive Scenario 2 above, except
+<code>interim = NA</code> (fixed design, single look at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>216</mn></mrow><annotation encoding="application/x-tex">N=216</annotation></semantics></math>),
+<code>delta.eff</code> and <code>delta.fut</code> are set to scalar
+values <code>0</code> and <code>log(1.5)</code> respectively.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># number of trials</span></span>
 <span><span class="va">R</span> <span class="op">=</span> <span class="fl">25</span></span>
@@ -633,28 +622,27 @@ used.</p>
 <span><span class="va">logit</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">p</span><span class="op">/</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># simulation</span></span>
-<span><span class="va">scenario2_fixed</span> <span class="op">=</span> <span class="fu"><a href="../../reference/batss.glm.html">batss.glm</a></span><span class="op">(</span>   </span>
+<span><span class="va">scenario2_fixed</span> <span class="op">=</span> <span class="fu"><a href="../../reference/batss.glm.html">batss.glm</a></span><span class="op">(</span></span>
 <span>  model           <span class="op">=</span> <span class="va">y</span><span class="op">~</span><span class="va">group</span>,</span>
 <span>  var             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">rbinom</span>,</span>
 <span>                         group <span class="op">=</span> <span class="va">treatalloc.fun</span><span class="op">)</span>,</span>
-<span>  var.control     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>  var.control     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  family          <span class="op">=</span> <span class="st">"binomial"</span>,</span>
 <span>  link            <span class="op">=</span> <span class="st">"logit"</span>,</span>
 <span>  beta            <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>,                    <span class="co"># log odd of reference group</span></span>
-<span>                      <span class="fl">0</span>,<span class="fl">0</span>,                           <span class="co"># log odds ratio of groups B and C       </span></span>
+<span>                      <span class="fl">0</span>,<span class="fl">0</span>,                           <span class="co"># log odds ratio of groups B and C</span></span>
 <span>                      <span class="fu">logit</span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span><span class="op">-</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>,         <span class="co"># log odds ratio of group D</span></span>
-<span>                      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.7</span><span class="op">)</span><span class="op">-</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>, <span class="co"># log odds ratio of groups E and F       </span></span>
+<span>                      <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.7</span><span class="op">)</span><span class="op">-</span><span class="fu">logit</span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>, <span class="co"># log odds ratio of groups E and F</span></span>
 <span>  which           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,</span>
 <span>  R               <span class="op">=</span> <span class="va">R</span>,</span>
 <span>  alternative     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"greater"</span><span class="op">)</span>,</span>
-<span>  RAR             <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  prob0           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">1</span>,B<span class="op">=</span><span class="fl">1</span>,C<span class="op">=</span><span class="fl">1</span>,D<span class="op">=</span><span class="fl">1</span>,E<span class="op">=</span><span class="fl">1</span>,F<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,</span>
-<span>  N               <span class="op">=</span> <span class="fl">216</span>, </span>
-<span>  interim         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>recruited<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  N               <span class="op">=</span> <span class="fl">216</span>,</span>
+<span>  interim         <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  eff.arm         <span class="op">=</span> <span class="va">efficacy.arm.fun</span>,</span>
-<span>  delta.eff       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">0</span><span class="op">)</span>, </span>
+<span>  delta.eff       <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  eff.arm.control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b.eff <span class="op">=</span> <span class="fl">0.045</span><span class="op">)</span>,</span>
-<span>  delta.fut       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>  delta.fut       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span>,</span>
 <span>  fut.arm         <span class="op">=</span> <span class="va">futility.arm.fun</span>,</span>
 <span>  fut.arm.control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>b.fut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,</span>
 <span>  computation     <span class="op">=</span> <span class="st">"parallel"</span>,</span>

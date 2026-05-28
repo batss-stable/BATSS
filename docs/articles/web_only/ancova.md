@@ -562,22 +562,15 @@ Compared to ‘Scenario 1’, we can note the following differences:
 We now show how to use `batss.glm` to obtain the operating
 characteristics of the corresponding fixed designs, considering the same
 efficacy and futility parameters as well as the same maximum sample size
-of $N = 130$ patients. The easiest way to fit a fixed design with
-**BATSS** is to plan a single interim analysis defined so that no
-adaptations are allowed. This is ensured by setting the `delta.eff` and
-`delta.fut` values to `NA` for the interim, as well as by setting the
-`RAR` argument to `NULL` (as treatment allocation after the interim
-analysis would otherwise be based on posterior probabilities estimated
-on interim data). Note that the sample size at the dummy interim should
-ideally be a multiple of the number of arms in the trial.
+of $N = 130$ patients. The simplest way to specify a fixed design with
+**BATSS** is to set `interim = NA`, which instructs the function to
+perform a single look at the maximum sample size `N`.
 
 #### Scenario 0 (fixed)
 
-Same as the adaptive Scenario 0 above, except `interim` is reduced to a
-single dummy interim at 52 participants, `delta.eff` and `delta.fut` are
-set to `c(NA, 0)` and `c(NA, 3)` respectively so that no decisions are
-made at the interim, and `RAR` is set to `NULL` (with `RAR.control` and
-`delta.RAR` removed) so that equal group allocation is used throughout.
+Same as the adaptive Scenario 0 above, except `interim = NA` (fixed
+design, single look at $N = 130$), `delta.eff` and `delta.fut` are set
+to scalar values `0` and `3` respectively.
 
 ``` r
 library(BATSS)
@@ -585,25 +578,24 @@ library(BATSS)
 R = 100
 
 # simulation
-scenario0_fixed = batss.glm(   
+scenario0_fixed = batss.glm(
   model           = y~group,
   var             = list(y = rnorm,
                          group = treatalloc.fun),
-  var.control     = list(y = list(sd = 7)), 
+  var.control     = list(y = list(sd = 7)),
   family          = "gaussian",
   link            = "identity",
   beta            = c(5,5,5,5),
   which           = c(2:4),
   R               = R,
   alternative     = c("greater"),
-  RAR             = NULL,
   prob0           = c(Ctrl=1,D1=1,D2=1,D3=1),
-  N               = 130, 
-  interim         = list(recruited=c(52)),
+  N               = 130,
+  interim         = NA,
   eff.arm         = efficacy.arm.fun,
-  delta.eff       = c(NA, 0), 
+  delta.eff       = 0,
   eff.arm.control = list(b.eff = 0.0115, p.eff=1.575),
-  delta.fut       = c(NA, 3), 
+  delta.fut       = 3,
   fut.arm         = futility.arm.fun,
   fut.arm.control = list(b.fut = 0.05),
   computation     = "parallel",
@@ -622,26 +614,25 @@ the adaptive Scenario 1 (with $\beta_{4} = 0$).
 R = 100
 
 # simulation
-scenario1_fixed = batss.glm(   
+scenario1_fixed = batss.glm(
   model           = y~group+baseline,
   var             = list(y = rnorm,
                          group = treatalloc.fun,
                          baseline = rnorm),
-  var.control     = list(y = list(sd = 7)), 
+  var.control     = list(y = list(sd = 7)),
   family          = "gaussian",
   link            = "identity",
   beta            = c(5,5,5,5,0),
   which           = c(2:4),
   R               = R,
   alternative     = c("greater"),
-  RAR             = NULL,
   prob0           = c(Ctrl=1,D1=1,D2=1,D3=1),
-  N               = 130, 
-  interim         = list(recruited=c(52)),
+  N               = 130,
+  interim         = NA,
   eff.arm         = efficacy.arm.fun,
-  delta.eff       = c(NA, 0), 
+  delta.eff       = 0,
   eff.arm.control = list(b.eff = 0.0115, p.eff=1.575),
-  delta.fut       = c(NA, 3), 
+  delta.fut       = 3,
   fut.arm         = futility.arm.fun,
   fut.arm.control = list(b.fut = 0.05),
   computation     = "parallel",
@@ -661,26 +652,25 @@ Same as the fixed Scenario 1 above, but with `beta`, `var.control` and
 R = 100
 
 # simulation
-scenario2_fixed = batss.glm(   
+scenario2_fixed = batss.glm(
   model           = y~group+baseline,
   var             = list(y = rnorm,
                          group = treatalloc.fun,
                          baseline = rnorm),
-  var.control     = list(y = list(sd = SIGMA.e), baseline = list(sd = SIGMA.x)), 
+  var.control     = list(y = list(sd = SIGMA.e), baseline = list(sd = SIGMA.x)),
   family          = "gaussian",
   link            = "identity",
   beta            = BETA,
   which           = c(2:4),
   R               = R,
   alternative     = c("greater"),
-  RAR             = NULL,
   prob0           = c(Ctrl=1,D1=1,D2=1,D3=1),
-  N               = 130, 
-  interim         = list(recruited=c(52)),
+  N               = 130,
+  interim         = NA,
   eff.arm         = efficacy.arm.fun,
-  delta.eff       = c(NA, 0), 
+  delta.eff       = 0,
   eff.arm.control = list(b.eff = 0.0115, p.eff=1.575),
-  delta.fut       = c(NA, 3), 
+  delta.fut       = 3,
   fut.arm         = futility.arm.fun,
   fut.arm.control = list(b.fut = 0.05),
   computation     = "parallel",

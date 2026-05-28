@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BATSS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,16 @@
 
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.0" id="version-120">Version 1.2.0<a class="anchor" aria-label="anchor" href="#version-120"></a></h2>
+<ul><li>Improvements to <code>batss.glm</code>:
+<ul><li>
+<code>interim = NA</code> now specifies a fixed (non-adaptive) design with a single look at the maximum sample size <code>N</code>
+</li>
+<li>a warning is issued when <code>RAR</code> is non-<code>NULL</code> and <code>interim = NA</code>, as response-adaptive randomisation has no effect in a fixed design</li>
+</ul></li>
+<li>Bug fixes to <code>batss.glm</code>, <code>batss.combine</code>, <code>summary.batss</code>, <code>plot.batss</code> and internal functions, including a fix to <code>eff.trial.control</code> and <code>fut.trial.control</code> being ignored in trial-level stopping decisions</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.1" id="version-111">Version 1.1.1<a class="anchor" aria-label="anchor" href="#version-111"></a></h2><p class="text-muted">CRAN release: 2025-10-02</p>
 <ul><li>Minor changes to <code>summary.batss</code>, that now

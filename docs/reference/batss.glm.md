@@ -120,7 +120,9 @@ batss.glm(
   A list of parameters related to interim analyses. Currently, only
   '`recruited`' is available. It consists in a vector of integers
   indicating the number of completed observations at each look, last
-  excluded, in increasing order.
+  excluded, in increasing order. Setting `interim = NA` specifies a
+  fixed (non-adaptive) design with a single look at the maximum sample
+  size `N`.
 
 - prob0:
 

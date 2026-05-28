@@ -380,44 +380,38 @@ Same as above except for `beta` which now leads to a mean of
 
 We now show how to use `batss.glm` to define the operating
 characteristics of the fixed design when considering the same efficacy
-and futiliy parameters as well as the same total maximum sample size of
-$N = 260$ patients. The easiest way to fit a fixed design with **BATSS**
-is to plan a single interim analysis defined so that no adaptations are
-allowed. This is ensured by setting the `delta.eff` and `delta.fut`
-values to `NA` for the interim (as well as by setting the `RAR` argument
-to `NULL` if RAR was considered in the design). Note that the sample
-size at the dummy interim should be a multiple of the number of arms in
-the trial.
+and futility parameters as well as the same total maximum sample size of
+$N = 260$ patients. The simplest way to specify a fixed design with
+**BATSS** is to set `interim = NA`, which instructs the function to
+perform a single look at the maximum sample size `N`.
 
-#### Scenario 1
+#### Scenario 1 (fixed)
 
-Same as the adaptive Scenario 1 above, except `interim` is reduced to a
-single dummy interim at 100 participants, and `delta.eff` and
-`delta.fut` are set to `c(NA, 0)` and `c(NA, log(0.8))` respectively, so
-that no decisions are made at the interim.
+Same as the adaptive Scenario 1 above, except `interim = NA` (fixed
+design, single look at $N = 260$). Note that `delta.eff` and `delta.fut`
+remain the scalar values `0` and `log(0.8)` as in the adaptive design.
 
 ``` r
 R = 25
 
-scenario1_fixed = batss.glm(   
+scenario1_fixed = batss.glm(
   model           = y~treatment,
-  var             = list(y = rnbinom,          
+  var             = list(y = rnbinom,
                          treatment = treatalloc.fun),
-  var.control     = list(y = list(size = 1/2)), 
+  var.control     = list(y = list(size = 1/2)),
   family          = "nbinomial",
   link            = "log",
   beta            = c(log(4),log(1),log(1),log(1)),
   which           = c(2:4),
   R               = R,
   alternative     = c("less"),
-  RAR             = NULL,
   prob0           = c(control = .25, A = .25, B = .25, C = .25),
   N               = 260,
-  interim         = list(recruited=c(100)),
+  interim         = NA,
   eff.arm         = efficacy.arm.fun,
-  delta.eff       = c(NA,0), 
+  delta.eff       = 0,
   eff.arm.control = list("b.eff"=0.009, "p.eff"=3),
-  delta.fut       = c(NA,log(0.8)), 
+  delta.fut       = log(0.8),
   fut.arm         = futility.arm.fun,
   fut.arm.control = list("b.fut"=0.2025),
   computation     = "parallel",
@@ -426,35 +420,33 @@ scenario1_fixed = batss.glm(
   extended        = 1) 
 ```
 
-#### Scenario 2
+#### Scenario 2 (fixed)
 
-Same as the adaptive Scenario 2 above, except `interim` is reduced to a
-single dummy interim at 100 participants, and `delta.eff` and
-`delta.fut` are set to `c(NA, 0)` and `c(NA, log(0.8))` respectively, so
-that no decisions are made at the interim.
+Same as the adaptive Scenario 2 above, except `interim = NA` (fixed
+design, single look at $N = 260$). Note that `delta.eff` and `delta.fut`
+remain the scalar values `0` and `log(0.8)` as in the adaptive design.
 
 ``` r
 R = 25
 
-scenario2_fixed = batss.glm(   
+scenario2_fixed = batss.glm(
   model           = y~treatment,
-  var             = list(y = rnbinom,          
+  var             = list(y = rnbinom,
                          treatment = treatalloc.fun),
-  var.control     = list(y = list(size = 1/2)), 
+  var.control     = list(y = list(size = 1/2)),
   family          = "nbinomial",
   link            = "log",
   beta            = c(log(4),log(1),log(1),log(0.4)),
   which           = c(2:4),
   R               = R,
   alternative     = c("less"),
-  RAR             = NULL,
   prob0           = c(control = .25, A = .25, B = .25, C = .25),
   N               = 260,
-  interim         = list(recruited=c(100)),
+  interim         = NA,
   eff.arm         = efficacy.arm.fun,
-  delta.eff       = c(NA,0), 
+  delta.eff       = 0,
   eff.arm.control = list("b.eff"=0.009, "p.eff"=3),
-  delta.fut       = c(NA,log(0.8)), 
+  delta.fut       = log(0.8),
   fut.arm         = futility.arm.fun,
   fut.arm.control = list("b.fut"=0.2025),
   computation     = "parallel",
@@ -463,35 +455,33 @@ scenario2_fixed = batss.glm(
   extended        = 1) 
 ```
 
-#### Scenario 3
+#### Scenario 3 (fixed)
 
-Same as the adaptive Scenario 3 above, except `interim` is reduced to a
-single dummy interim at 100 participants, and `delta.eff` and
-`delta.fut` are set to `c(NA, 0)` and `c(NA, log(0.8))` respectively, so
-that no decisions are made at the interim.
+Same as the adaptive Scenario 3 above, except `interim = NA` (fixed
+design, single look at $N = 260$). Note that `delta.eff` and `delta.fut`
+remain the scalar values `0` and `log(0.8)` as in the adaptive design.
 
 ``` r
 R = 25
 
-scenario3_fixed = batss.glm(   
+scenario3_fixed = batss.glm(
   model           = y~treatment,
-  var             = list(y = rnbinom,          
+  var             = list(y = rnbinom,
                          treatment = treatalloc.fun),
-  var.control     = list(y = list(size = 1/2)), 
+  var.control     = list(y = list(size = 1/2)),
   family          = "nbinomial",
   link            = "log",
   beta            = c(log(4),log(0.8),log(0.6),log(0.4)),
   which           = c(2:4),
   R               = R,
   alternative     = c("less"),
-  RAR             = NULL,
   prob0           = c(control = .25, A = .25, B = .25, C = .25),
   N               = 260,
-  interim         = list(recruited=c(100)),
+  interim         = NA,
   eff.arm         = efficacy.arm.fun,
-  delta.eff       = c(NA,0), 
+  delta.eff       = 0,
   eff.arm.control = list("b.eff"=0.009, "p.eff"=3),
-  delta.fut       = c(NA,log(0.8)), 
+  delta.fut       = log(0.8),
   fut.arm         = futility.arm.fun,
   fut.arm.control = list("b.fut"=0.2025),
   computation     = "parallel",
