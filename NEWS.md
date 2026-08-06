@@ -1,3 +1,10 @@
+## Version 1.2.1
+
+-   Fixes a bug in `batss.glm` (reported by Stina Zetterstrom) that
+    required intervention groups to be listed in alphabetical order
+    in `prob0` for the corresponding allocation probabilities to be
+    correctly assigned when using RAR. 
+
 ## Version 1.2.0
 
 -   Improvements to `batss.glm`:

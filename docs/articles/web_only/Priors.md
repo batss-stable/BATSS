@@ -241,16 +241,16 @@ INLA::inla.models()$likelihood$gaussian
     ## $hyper$theta1$to.theta
     ## function (x) 
     ## log(x)
-    ## <bytecode: 0x1176d7d60>
-    ## <environment: 0x1176ce240>
+    ## <bytecode: 0x118279d60>
+    ## <environment: 0x118270240>
     ## attr(,"inla.read.only")
     ## [1] TRUE
     ## 
     ## $hyper$theta1$from.theta
     ## function (x) 
     ## exp(x)
-    ## <bytecode: 0x1176d7e78>
-    ## <environment: 0x1176ce240>
+    ## <bytecode: 0x118279e78>
+    ## <environment: 0x118270240>
     ## attr(,"inla.read.only")
     ## [1] TRUE
     ## 
@@ -304,16 +304,16 @@ INLA::inla.models()$likelihood$gaussian
     ## $hyper$theta2$to.theta
     ## function (x) 
     ## log(x)
-    ## <bytecode: 0x1176d7d60>
-    ## <environment: 0x1176ce240>
+    ## <bytecode: 0x118279d60>
+    ## <environment: 0x118270240>
     ## attr(,"inla.read.only")
     ## [1] TRUE
     ## 
     ## $hyper$theta2$from.theta
     ## function (x) 
     ## exp(x)
-    ## <bytecode: 0x1176d7e78>
-    ## <environment: 0x1176ce240>
+    ## <bytecode: 0x118279e78>
+    ## <environment: 0x118270240>
     ## attr(,"inla.read.only")
     ## [1] TRUE
     ## 
